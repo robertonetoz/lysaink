@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme {
+  --color-nanquim: #000000;
+  --color-fuligem: #0e0c0c;
+  --color-osso: #e6dfd0;
+  --color-cinza: #9a9388;
+  --color-sangue: #7a0f1c;
+  --color-labio: #b3202f;
+  --color-papel: #d9cfbb;
+
+  --font-gotica: var(--font-grenze-gotisch), "UnifrakturCook", "Old English Text MT", serif;
+  --font-texto: var(--font-grenze), Georgia, "Times New Roman", serif;
+}
+
+html {
+  background: var(--color-nanquim);
+  color-scheme: dark;
+  scrollbar-color: #2b2424 #000;
+  /* O celular não deve inflar o texto sozinho nem piscar cinza ao toque. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button,
+label,
+select {
+  touch-action: manipulation;
+}
+
+body {
+  background: var(--color-nanquim);
+  color: var(--color-osso);
+  font-family: var(--font-texto);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-sangue);
+  color: var(--color-osso);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-labio);
+  outline-offset: 4px;
+}
+
+/* Letra só no contorno, como o traço antes do preenchimento. */
+.contorno {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-osso);
+}
+
+/* Granulado de filme sobre o site inteiro, o mesmo das fotos dela. */
+.grao {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.papel {
+  background-color: var(--color-papel);
+  background-image:
+    radial-gradient(120% 90% at 50% 0%, transparent 55%, rgb(96 72 44 / 0.22) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.06 .5' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .22 0 0 0 0 .12 0 0 0 .34 -.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+}
+
+@keyframes bater-asas {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.58) scaleY(1.08);
+  }
+}
+
+@keyframes balancar-rabo {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes piscar {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.06);
+  }
+}
+
+.asas {
+  animation: bater-asas 0.42s ease-in-out infinite;
+}
+
+.rabo {
+  transform-origin: 158px 244px;
+  animation: balancar-rabo 3.6s ease-in-out infinite;
+}
+
+.olho {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: piscar 6.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asas,
+  .rabo,
+  .olho {
+    animation: none;
+  }
+}
