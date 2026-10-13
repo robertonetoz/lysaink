@@ -6,6 +6,7 @@ import { ArchDefs } from "@/components/Arch";
 import { Nav } from "@/components/Nav";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThornSpine } from "@/components/Thorns";
+import { site } from "@/lib/site";
 
 const gotica = Grenze_Gotisch({
   subsets: ["latin"],
@@ -21,16 +22,22 @@ const texto = Grenze({
   display: "swap",
 });
 
+// A imagem da prévia do link (Instagram, WhatsApp) é app/opengraph-image.png.
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: "Lysa Ink | Tatuagem dark e blackwork em Uberlândia, MG",
   description:
     "Lysa tatua blackwork, pontilhismo e temas góticos em Uberlândia, MG. Veja os trabalhos e peça seu orçamento pelo WhatsApp.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Lysa Ink | Tatuagem dark e blackwork",
-    description: "Blackwork, pontilhismo e temas góticos em Uberlândia, MG.",
+    description: "Blackwork, pontilhismo e temas góticos em Uberlândia, MG. Veja os trabalhos e peça seu orçamento.",
+    url: "/",
+    siteName: site.name,
     locale: "pt_BR",
     type: "website",
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

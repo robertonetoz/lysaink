@@ -1,5 +1,6 @@
 export const site = {
   name: "Lysa Ink",
+  url: "https://lysaink.vercel.app",
   artist: "Lysa",
   city: "Uberlândia, MG",
   whatsapp: "5534997220220",
